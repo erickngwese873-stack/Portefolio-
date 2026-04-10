@@ -1,38 +1,40 @@
 # Digital Acquisition Performance Analysis
 
-> Multi-channel marketing campaign analysis across 200K campaigns, $2.5B total spend, full-year 2021.
-
-![Dashboard Preview](dashboard_preview.png)
+> Multi-channel performance analysis (paid & organic) for acquisition efficiency and budget allocation across 200K campaigns · Jan–Dec 2021 · $2.5B total spend.
 
 ---
 
 ## Project Overview
 
-This project delivers an end-to-end analysis of digital acquisition performance across **6 channels**, **5 campaign types**, and **5 audience segments**. It includes SQL queries for core KPIs, an interactive dashboard, and budget reallocation scenarios.
+End-to-end analysis of digital acquisition performance across **6 channels**, **5 campaign types**, **5 audience segments**, and **10 geographic markets**. Delivers SQL-driven KPI computation, an interactive browser dashboard, and an efficiency-scored budget reallocation model.
 
 ### Dataset
 
 | Attribute | Value |
-|-----------|-------|
-| **Campaigns** | 200,000 |
-| **Time Period** | Jan–Dec 2021 |
-| **Total Spend** | $2.50B |
-| **Est. Revenue** | $12.52B |
-| **Channels** | Google Ads, Facebook, Instagram, YouTube, Website, Email |
-| **Campaign Types** | Display, Email, Influencer, Search, Social Media |
+|---|---|
+| Source | [Predict Conversion in Digital Marketing Dataset](https://www.kaggle.com/datasets/rabieelkharoua/predict-conversion-in-digital-marketing-dataset) (Rabie El Kharoua, Kaggle) |
+| Campaigns | 200,000 |
+| Time Period | Jan – Dec 2021 |
+| Total Spend | $2.50B |
+| Est. Revenue | $12.52B |
+| Channels | Google Ads, Facebook, Instagram, YouTube, Website, Email |
+| Campaign Types | Display, Email, Influencer, Search, Social Media |
+| Audiences | Men 18-24, Men 25-34, Women 25-34, Women 35-44, All Ages |
+| Columns | 16 |
 
 ---
 
 ## Key KPIs
 
 | KPI | Value |
-|-----|-------|
+|---|---|
 | Average ROAS | 5.00x |
 | Average Conversion Rate | 8.01% |
 | Average CPC | $32.01 |
 | Average CPA | $635.33 |
 | Total Clicks | 109.9M |
 | Total Impressions | 1.10B |
+| CTR | ~14.0% |
 
 ---
 
@@ -40,20 +42,16 @@ This project delivers an end-to-end analysis of digital acquisition performance 
 
 ### 1. Multi-Channel Performance (Paid & Organic)
 
-**Paid Channels** (Google Ads, Facebook, Instagram, YouTube):
-- 66.5% of total spend ($1.66B)
-- Avg ROAS: 5.00x | Avg CPC: $32.10 | Avg CPA: $636.95
+**Paid** (Google Ads, Facebook, Instagram, YouTube) — 66.5% of spend ($1.66B), Avg ROAS 5.00x, CPA $636.
 
-**Organic Channels** (Website, Email):
-- 33.5% of total spend ($837M)
-- Avg ROAS: 5.01x | Avg CPC: $31.83 | Avg CPA: $632.12
+**Organic** (Website, Email) — 33.5% of spend ($837M), Avg ROAS 5.01x, CPA $632.
 
-**Insight:** Organic channels deliver marginally better cost-efficiency (lower CPC/CPA) despite receiving proportionally less budget.
+Organic channels deliver marginally better cost-efficiency (2–3% lower CPC/CPA) despite receiving proportionally less budget.
 
 ### 2. Channel Rankings
 
 | Channel | ROAS | CPC | CPA | CTR |
-|---------|------|-----|-----|-----|
+|---|---|---|---|---|
 | Facebook | 5.02x | $32.13 | $633.81 | 14.05% |
 | Website | 5.01x | $31.78 | $632.08 | 14.10% |
 | Google Ads | 5.00x | $32.31 | $642.26 | 13.92% |
@@ -63,93 +61,97 @@ This project delivers an end-to-end analysis of digital acquisition performance 
 
 ### 3. Campaign Type Analysis
 
-| Type | ROAS | CPA | Share of Spend |
-|------|------|-----|----------------|
-| Influencer | 5.01x | $631.67 | 20.1% |
-| Search | 5.01x | $634.13 | 20.1% |
-| Display | 5.01x | $642.06 | 20.0% |
-| Email | 4.99x | $638.91 | 19.9% |
-| Social Media | 4.99x | $629.89 | 19.9% |
+| Type | ROAS | CPA |
+|---|---|---|
+| Influencer | 5.01x | $631.67 |
+| Search | 5.01x | $634.13 |
+| Display | 5.01x | $642.06 |
+| Email | 4.99x | $638.91 |
+| Social Media | 4.99x | $629.89 |
 
-### 4. Budget Reallocation Scenarios
+### 4. Budget Reallocation Model
 
-Efficiency-weighted model (40% ROI, 30% inverse CPA, 30% Conversion Rate):
+Efficiency score = 40% ROAS + 30% inverse CPA + 30% Conversion Rate
 
 | Channel | Current % | Recommended % | Delta |
-|---------|-----------|---------------|-------|
-| Website | 16.66% | 16.73% | +0.08% |
+|---|---|---|---|
 | Facebook | 16.42% | 16.71% | **+0.29%** |
-| Email | 16.83% | 16.71% | -0.12% |
-| Google Ads | 16.75% | 16.60% | **-0.15%** |
+| Website | 16.66% | 16.73% | +0.08% |
 | YouTube | 16.67% | 16.63% | -0.04% |
 | Instagram | 16.68% | 16.62% | -0.06% |
+| Email | 16.83% | 16.71% | -0.12% |
+| Google Ads | 16.75% | 16.60% | **-0.15%** |
 
-**Impact:** ~$7.3M budget shift, projected +0.02x ROAS lift across portfolio.
+Projected budget shift: ~$7.3M · Expected ROAS lift: +0.02x.
 
----
+### 5. Geographic & Duration Insights
 
-## SQL Queries
-
-The `sql_queries.sql` file includes 10 production-ready queries:
-
-1. **KPI Overview** — CPC, CPA, ROAS, Conversion Rate by channel
-2. **Paid vs Organic** — Split performance comparison
-3. **Campaign Type** — Performance by campaign format
-4. **Monthly Trends** — Spend & revenue seasonality
-5. **ROI Heatmap** — Campaign Type × Channel matrix
-6. **Audience Segmentation** — Target audience performance
-7. **Customer Segments** — Vertical performance (Foodies, Tech, etc.)
-8. **Budget Reallocation** — Efficiency-scored allocation model
-9. **Top 10 Campaigns** — Highest-ROI individual campaigns
-10. **Monthly Channel Trends** — Time-series by channel
-
----
-
-## Dashboard
-
-Interactive HTML dashboard with:
-- 6 KPI summary cards
-- 5 tabbed views (Overview, Channels, Campaigns, Audience, Budget)
-- 12+ Chart.js visualizations (bar, line, radar, polar, doughnut)
-- Performance comparison tables
-- Budget scenario visualizer
-
-**Open `dashboard.html` in any browser to explore.**
-
----
-
-## Tech Stack
-
-- **Python / Pandas** — Data cleaning, transformation, KPI computation
-- **SQL** — Analytical queries (PostgreSQL-compatible)
-- **HTML / CSS / Chart.js** — Interactive dashboard
-- **Dataset** — 200K rows, 16 columns
+- **San Jose** and **San Diego** lead all markets in ROAS (5.04x / 5.03x).
+- **Short campaigns (1–7 days)** achieve the lowest CPA ($598) — 8% better than 30+ day campaigns ($647).
+- Markets with higher organic channel mix show 2–3% lower CPA consistently.
 
 ---
 
 ## Key Findings & Recommendations
 
-1. **Channel uniformity** — All 6 channels perform within a tight 4.99–5.02x ROAS band, suggesting balanced but undifferentiated allocation.
-
-2. **Organic advantage** — Website and Email deliver 2-3% lower CPC/CPA than paid channels despite lower spend share.
-
-3. **Influencer campaigns win** — Highest ROAS (5.01x) and lowest CPA ($631.67) across all campaign types.
-
-4. **Men 25-34** are the top-performing audience (5.02x ROAS); **Men 18-24** have highest engagement but lowest ROI.
-
-5. **Primary optimization lever** is at the campaign-type and audience level, not channel level — consider shifting more budget toward Influencer campaigns targeting Men 25-34 in the Tech Enthusiasts segment.
+1. **Channel uniformity** — All 6 channels perform within a 4.99–5.02x ROAS band. Differentiation must come from campaign-type and audience targeting, not channel selection alone.
+2. **Organic advantage** — Website and Email deliver lower CPC/CPA at one-third the budget share. Consider increasing organic budget allocation by 2–4 percentage points.
+3. **Influencer campaigns win** — Highest ROAS (5.01x) and lowest CPA ($631.67) across all campaign types. Prioritize Influencer format, especially on Facebook and Website.
+4. **Men 25-34 is the top audience** — 5.02x ROAS vs. 4.98x for Men 18-24 (who have high engagement but low conversion).
+5. **Burst over endurance** — Campaigns under 7 days achieve 8% lower CPA. Short-burst campaigns with creative rotation outperform always-on 30+ day placements.
 
 ---
 
-## File Structure
+## SQL Queries (`sql_queries.sql`)
 
-```
-├── README.md                  # This file
-├── dashboard.html             # Interactive analysis dashboard
-├── sql_queries.sql            # 10 SQL analytical queries
-└── marketing_campaign_dataset.csv  # Source data (200K rows)
-```
+12 production-ready PostgreSQL queries:
+
+| # | Query |
+|---|---|
+| 0 | Table DDL — reference schema |
+| 1 | KPI Overview — CPC, CPA, ROAS, CVR, CTR by channel |
+| 2 | Paid vs Organic split |
+| 3 | Campaign Type ranking |
+| 4 | Monthly trends with MoM delta |
+| 5 | Channel × Campaign Type ROI matrix (pivot) |
+| 6 | Target Audience segmentation with percentile rank |
+| 7 | Customer Segment revenue & net profit |
+| 8 | Budget reallocation efficiency model |
+| 9 | Top 10 highest-ROI campaigns |
+| 10 | Monthly channel trends (time-series) |
+| 11 | Location performance ranking |
+| 12 | Campaign duration efficiency buckets |
 
 ---
 
-*Analysis completed March 2026*
+## Dashboard (`dashboard.html`)
+
+Open in any modern browser — no server required.
+
+**6 tabs:**
+- **Overview** — Channel ROAS, monthly spend/revenue trend, CPC/CPA bars, 12-month line chart
+- **Channel Deep Dive** — Paid vs Organic breakdown, conversion rate comparison, full KPI table
+- **Campaign Types** — ROI by type, spend distribution, Channel × Type heatmap
+- **Audience & Segments** — Dual-axis ROI/engagement chart, segment revenue, audience table
+- **Budget Optimization** — Current vs recommended allocation, efficiency scores, scenario simulator
+- **Location & Duration** — Market ROAS ranking, CPA by duration bucket, spend map, location table
+
+**Tech:** HTML · CSS · Chart.js 4.4 · Vanilla JS · No build step
+
+---
+
+## Setup
+
+```bash
+# 1. Generate synthetic dataset (matches Kaggle schema)
+python generate_dataset.py --rows 200000 --out marketing_campaign_dataset.csv --compute-kpis
+
+# 2. Load into PostgreSQL
+psql -d your_db -c "\copy marketing_campaigns FROM 'marketing_campaign_dataset.csv' CSV HEADER"
+
+# 3. Run SQL queries
+psql -d your_db -f sql_queries.sql
+
+# 4. Open dashboard
+open dashboard.html    # macOS
+xdg-open dashboard.html  # Linux
